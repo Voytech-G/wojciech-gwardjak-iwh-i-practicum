@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+    head
+        title= `${title}`
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        .form-wrapper
+            p Car: #{name}
+            p Brand: #{brand}
+            p Color: #{color}
+            p Maximum speed: #{max_speed}
+            form(method="POST")
+                label(for="newName") New name
+                input(type="text" name="newName" required)
+                label(for="newColor") New color
+                input(type="text" name="newColor" required)
+                label(for="newBrand") New brand
+                input(type="text" name="newBrand" required)
+                label(for="newMaxSpeed") New maximum speed
+                input(type="text" name="newMaxSpeed" required)
+                input(type="submit" value="Submit")
+                
