@@ -7,6 +7,7 @@ html
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet", href="/css/style.css")
     body    
+        a(href="/") Add to this table
         h1 Cars list
         .cards 
             each car in data
@@ -15,3 +16,5 @@ html
                     p.card__email #{car.properties.color}
                     p.card__email #{car.properties.brand}
                     p.card__email #{car.properties.max_speed}
+                
+        

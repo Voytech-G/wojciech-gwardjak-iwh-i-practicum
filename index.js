@@ -8,14 +8,14 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // * Please DO NOT INCLUDE the private app access token in your repo. Don't do this practicum in your normal account.
-const PRIVATE_APP_ACCESS = 'pat-eu1-555d23f8-3ebb-4879-9a48-69bcf8d03732';
+const PRIVATE_APP_ACCESS = 'pat-eu1-75da9f06-b04d-437b-967c-74232014d54f';
 const OBJECT_TYPE_ID = "2-120537120";
 
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 // * Code for Route 1 goes here
 app.get('/', async (req, res) => {
-    const cars = `https://api.hubspot.com/crm/v3/schemas/${OBJECT_TYPE_ID}`;
+    const cars = `https://api.hubspot.com/crm/v3/objects/cars?limit=10&properties=name,color,brand,max_speed&archived=false`;
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
@@ -38,18 +38,18 @@ app.get('/update-cobj', async (req, res) => {
     const name = req.query.name;
     const id = req.query.id;
 
-    const getContact = `https://api.hubapi.com/crm/v3/objects/${OBJECT_TYPE_ID}/${name}?idProperty=name&properties=name,color,brand,max_speed`;
+    const getCar = `https://api.hubapi.com/crm/v3/objects/${OBJECT_TYPE_ID}/${name}?idProperty=name&properties=name,color,brand,max_speed`;
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
     };
 
     try {
-        const response = await axios.get(getContact, { headers });
+        const response = await axios.get(getCar, { headers });
         const data = response.data;
 
         // res.json(data);
-        res.render('update', {name: data.properties.name, brand: data.properties.brand, color: data.properties.color, max_speed: data.properties.max_speed});
+        res.render('updates', {title: "Update Custom Object", name: data.properties.name, brand: data.properties.brand, color: data.properties.color, max_speed: data.properties.max_speed});
         
     } catch(err) {
         console.error(err);
@@ -81,7 +81,6 @@ app.post('/update-cobj', async (req, res) => {
     } catch(err) {
         console.error(err);
     }
-
 });
 
 // * Localhost
