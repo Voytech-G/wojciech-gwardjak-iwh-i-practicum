@@ -7,14 +7,17 @@ html
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet", href="/css/style.css")
     body    
-        a(href="/") Add to this table
-        h1 Cars list
-        .cards 
+        h1 Custom Object Table
+        a(href="/update-cobj") Add to this table
+        table(style='width:100%', border='1')
+            tr
+                th Name
+                th Color
+                th Brand
+                th Maximum Speed
             each car in data
-                .card 
-                    h2.card__name #{car.properties.name}
-                    p.card__email #{car.properties.color}
-                    p.card__email #{car.properties.brand}
-                    p.card__email #{car.properties.max_speed}
-                
-        
+                tr
+                    td #{car.properties.name}
+                    td #{car.properties.color}
+                    td #{car.properties.brand}
+                    td #{car.properties.max_speed}
